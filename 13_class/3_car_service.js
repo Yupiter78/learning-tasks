@@ -13,11 +13,14 @@ class CarService {
             return;
         }
         const time = new Date().getHours();
-        const [openHour, closeHour] = Object.values(this.workingHours)
+        // const [openHour, closeHour] = Object.values(this.workingHours)
+        //     .map(time => Number(time.split(":")[0]));
+        const { from, till } = this.workingHours;
+        const [openHour, closeHour] = [from, till]
             .map(time => Number(time.split(":")[0]));
         console.log(openHour, closeHour);
         if (time < openHour || time > closeHour) {
-            console.log("Unfortunately, we are now closed. Come back tomorrow");
+            console.log(`Unfortunately, ${this.name} is now closed. Come back tomorrow`);
         } else {
             console.log(`Let's get your car ${carName} repaired now! Expect, please.`)
         }

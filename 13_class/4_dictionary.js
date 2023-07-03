@@ -8,19 +8,19 @@ class Dictionary {
             this.words[word] = {word, description};
         }
     }
-    remove(word) {
-        if (this.words[word]) {
-            delete this.words[word];
+    remove(key) {
+        if (key in this.words) {
+            delete this.words[key];
         }
     }
-    get(word) {
-        if (this.words[word]) {
-            return this.words[word];
+    get(key) {
+        if (key in this.words) {
+            return this.words[key];
         }
     }
     showAllWords() {
-        for (let word of Object.keys(this.words)) {
-            console.log(`${this.words[word].word} - ${this.words[word].description}`)
+        for (let prop of Object.values(this.words)) {
+            console.log(`${prop.word} - ${prop.description}`);
         }
     }
 }
@@ -30,6 +30,7 @@ dictionary.add('JavaScript', 'popular programming language');
 dictionary.add('Web-developer', 'A person who creates new services and sites or maintains and complements existing ones');
 
 console.log(dictionary);
+console.log(dictionary.get("JavaScript"));
 
 dictionary.remove('JavaScript');
 dictionary.showAllWords();

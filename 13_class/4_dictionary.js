@@ -1,25 +1,27 @@
 class Dictionary {
+    #name;
+    #words
     constructor(name) {
-        this.name = name;
-        this.words = {};
+        this.#name = name;
+        this.#words = {};
     }
     add(word, description) {
-        if (!this.words[word]) {
-            this.words[word] = {word, description};
+        if (!(word in this.#words)) {
+            this.#words[word] = {word, description};
         }
     }
     remove(key) {
-        if (key in this.words) {
-            delete this.words[key];
+        if (key in this.#words) {
+            delete this.#words[key];
         }
     }
     get(key) {
-        if (key in this.words) {
-            return this.words[key];
+        if (key in this.#words) {
+            return this.#words[key];
         }
     }
     showAllWords() {
-        for (let prop of Object.values(this.words)) {
+        for (let prop of Object.values(this.#words)) {
             console.log(`${prop.word} - ${prop.description}`);
         }
     }

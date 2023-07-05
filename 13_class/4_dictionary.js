@@ -38,19 +38,22 @@ dictionary.remove('JavaScript');
 dictionary.showAllWords();
 // Web-developer - A person who creates new services and sites or maintains and complements existing ones
 
-class HardWordDictionary extends Dictionary {
+class HardWordsDictionary extends Dictionary {
     constructor(name) {
         super(name);
     }
     add(word, description) {
         super.add(word, description);
-        this._words[word].isDifficult = true;
+        this._words[word] = {...this._words[word], isDifficult: true};
     }
 }
 
-const hardWord = new HardWordDictionary("hard word");
-console.log(hardWord);
+const hardWord = new HardWordsDictionary("hard word");
+
 hardWord.add('amateur', 'One who engages in science or art without special training, possessing only superficial knowledge.');
 hardWord.add('neologism', 'A new word or expression, as well as a new meaning for an old word.');
 hardWord.add('quantum', 'An indivisible part of any quantity in physics.');
+
+hardWord.remove('neologism');
+hardWord.showAllWords();
 console.log(hardWord);

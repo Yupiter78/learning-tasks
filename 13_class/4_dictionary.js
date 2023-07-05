@@ -1,27 +1,27 @@
 class Dictionary {
-    #name;
-    #words
+    _name;
+    _words
     constructor(name) {
-        this.#name = name;
-        this.#words = {};
+        this._name = name;
+        this._words = {};
     }
     add(word, description) {
-        if (!(word in this.#words)) {
-            this.#words[word] = {word, description};
+        if (!(word in this._words)) {
+            this._words[word] = {word, description};
         }
     }
     remove(key) {
-        if (key in this.#words) {
-            delete this.#words[key];
+        if (key in this._words) {
+            delete this._words[key];
         }
     }
     get(key) {
-        if (key in this.#words) {
-            return this.#words[key];
+        if (key in this._words) {
+            return this._words[key];
         }
     }
     showAllWords() {
-        for (let prop of Object.values(this.#words)) {
+        for (let prop of Object.values(this._words)) {
             console.log(`${prop.word} - ${prop.description}`);
         }
     }
@@ -37,3 +37,20 @@ console.log(dictionary.get("JavaScript"));
 dictionary.remove('JavaScript');
 dictionary.showAllWords();
 // Web-developer - A person who creates new services and sites or maintains and complements existing ones
+
+class HardWordDictionary extends Dictionary {
+    constructor(name) {
+        super(name);
+    }
+    add(word, description) {
+        super.add(word, description);
+        this._words[word].isDifficult = true;
+    }
+}
+
+const hardWord = new HardWordDictionary("hard word");
+console.log(hardWord);
+hardWord.add('amateur', 'One who engages in science or art without special training, possessing only superficial knowledge.');
+hardWord.add('neologism', 'A new word or expression, as well as a new meaning for an old word.');
+hardWord.add('quantum', 'An indivisible part of any quantity in physics.');
+console.log(hardWord);
